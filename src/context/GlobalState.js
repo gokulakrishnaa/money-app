@@ -25,29 +25,28 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
-  async function deleteTransaction(id) {
-    const transaction_data = await fetch(`${API_URL}/api/transactions/${id}`, {
+  function deleteTransaction(id) {
+    fetch(`${API_URL}/api/transactions/${id}`, {
       method: "DELETE",
     });
-    console.log(transaction_data);
 
     dispatch({
       type: "DELETE_TRANSACTION",
-      payload: transaction_data,
+      payload: id,
     });
   }
 
-  async function addTransaction(transaction) {
-    const transaction_data = await fetch(`${API_URL}/api/transactions`, {
+  function addTransaction(transaction) {
+    fetch(`${API_URL}/api/transactions`, {
       method: "POST",
       body: JSON.stringify(transaction),
       headers: { "Content-Type": "application/json" },
     });
-    console.log(transaction_data);
+    // console.log(transaction_data);
 
     dispatch({
       type: "ADD_TRANSACTION",
-      payload: transaction_data,
+      payload: transaction,
     });
   }
 
